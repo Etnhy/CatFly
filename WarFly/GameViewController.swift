@@ -35,7 +35,8 @@ class GameViewController: UIViewController {
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+            return .portrait
+
     }
 
     override var prefersStatusBarHidden: Bool {
