@@ -63,14 +63,14 @@
 		6002F93D282D5F7D0088EBAB /* WarFly */ = {
 			isa = PBXGroup;
 			children = (
-				6002F93E282D5F7D0088EBAB /* AppDelegate.swift */,
-				6002F944282D5F7D0088EBAB /* GameScene.swift */,
 				6002F959282D69460088EBAB /* Sprites */,
+				6002F944282D5F7D0088EBAB /* GameScene.swift */,
 				6002F955282D62320088EBAB /* Background.swift */,
 				6002F946282D5F7D0088EBAB /* GameViewController.swift */,
 				6002F948282D5F7D0088EBAB /* Main.storyboard */,
 				6002F94B282D5F7F0088EBAB /* Assets.xcassets */,
 				6002F94D282D5F7F0088EBAB /* LaunchScreen.storyboard */,
+				6002F93E282D5F7D0088EBAB /* AppDelegate.swift */,
 			);
 			path = WarFly;
 			sourceTree = "<group>";

@@ -17,6 +17,7 @@ final class Island: SKSpriteNode, GameBackgroundSpriteabale {
         island.position = point
         island.zPosition = 1
         island.run(rotateForRandomAngle())
+        island.run(move(from: point))
         return island
     }
     
@@ -38,4 +39,14 @@ final class Island: SKSpriteNode, GameBackgroundSpriteabale {
         let randomNubmer = CGFloat(distribution.nextInt())
         return SKAction.rotate(byAngle: randomNubmer * CGFloat(Double.pi / 180) , duration: 0)
     }
+    
+    fileprivate static func move(from point: CGPoint) -> SKAction {
+        let movePoint = CGPoint(x: point.x, y: point.y - 200)
+        let moveDistance = point.y + 200
+        let movementSpeed: CGFloat = 10.0
+        let duration = moveDistance / movementSpeed
+        return SKAction.move(to: movePoint, duration: duration)
+    }
 }
+
+
