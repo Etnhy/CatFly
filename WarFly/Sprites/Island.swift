@@ -8,10 +8,10 @@
 import SpriteKit
 import GameplayKit
 
-class Island: SKSpriteNode {
+final class Island: SKSpriteNode, GameBackgroundSpriteabale {
     
-    static func populateIsland(at point: CGPoint) -> Island {
-        let islandImageName = configureIslandName()
+    static func populateSprite(at point: CGPoint) -> Island {
+        let islandImageName = configureName()
         let island = Island(imageNamed: islandImageName)
         island.setScale(randomScaleFactor)
         island.position = point
@@ -20,14 +20,14 @@ class Island: SKSpriteNode {
         return island
     }
     
-    static func configureIslandName() -> String {
+   fileprivate static func configureName() -> String {
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 4)
         let randomNubmer = distribution.nextInt()
         let imageName = "is" + "\(randomNubmer)"
         return imageName
     }
     
-    static var randomScaleFactor: CGFloat {
+   fileprivate static var randomScaleFactor: CGFloat {
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 10)
         let randomNubmer = CGFloat(distribution.nextInt())  / 10
         return randomNubmer
