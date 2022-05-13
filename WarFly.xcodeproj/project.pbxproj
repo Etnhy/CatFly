@@ -27,6 +27,7 @@
 		605E8A3F282E734700C23D92 /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A3E282E734600C23D92 /* BluePowerUp.atlas */; };
 		60CF06E3282E7689002012A2 /* BluePowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF06E2282E7689002012A2 /* BluePowerUp.swift */; };
 		60CF06E5282E7695002012A2 /* GreenPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF06E4282E7695002012A2 /* GreenPowerUp.swift */; };
+		60CF06E7282E7CB2002012A2 /* YellowAmmo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 60CF06E6282E7CB2002012A2 /* YellowAmmo.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		605E8A3E282E734600C23D92 /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
 		60CF06E2282E7689002012A2 /* BluePowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluePowerUp.swift; sourceTree = "<group>"; };
 		60CF06E4282E7695002012A2 /* GreenPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenPowerUp.swift; sourceTree = "<group>"; };
+		60CF06E6282E7CB2002012A2 /* YellowAmmo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = YellowAmmo.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +93,7 @@
 				6002F94B282D5F7F0088EBAB /* Assets.xcassets */,
 				6002F94D282D5F7F0088EBAB /* LaunchScreen.storyboard */,
 				6002F93E282D5F7D0088EBAB /* AppDelegate.swift */,
-				605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */,
-				605E8A3E282E734600C23D92 /* BluePowerUp.atlas */,
-				605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */,
-				605E8A3A282E634100C23D92 /* Enemy_1.atlas */,
-				6002F998282D71640088EBAB /* PlayerPlane.atlas */,
+				60CF06E8282E7CD3002012A2 /* Textures */,
 			);
 			path = WarFly;
 			sourceTree = "<group>";
@@ -153,6 +151,19 @@
 				605E8A37282E5F3E00C23D92 /* Enemy.swift */,
 			);
 			path = Enemys;
+			sourceTree = "<group>";
+		};
+		60CF06E8282E7CD3002012A2 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				60CF06E6282E7CB2002012A2 /* YellowAmmo.atlas */,
+				605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */,
+				605E8A3E282E734600C23D92 /* BluePowerUp.atlas */,
+				605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */,
+				605E8A3A282E634100C23D92 /* Enemy_1.atlas */,
+				6002F998282D71640088EBAB /* PlayerPlane.atlas */,
+			);
+			path = Textures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 				605E8A3D282E6CA600C23D92 /* Enemy_2.atlas in Resources */,
 				605E8A3B282E634100C23D92 /* Enemy_1.atlas in Resources */,
 				6002F94A282D5F7D0088EBAB /* Main.storyboard in Resources */,
+				60CF06E7282E7CB2002012A2 /* YellowAmmo.atlas in Resources */,
 				605E8A31282E4D6C00C23D92 /* GreenPowerUp.atlas in Resources */,
 				6002F999282D71640088EBAB /* PlayerPlane.atlas in Resources */,
 				6002F94C282D5F7F0088EBAB /* Assets.xcassets in Resources */,
