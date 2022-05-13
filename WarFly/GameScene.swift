@@ -13,15 +13,22 @@ class GameScene: SKScene {
     
     var player: PlayerPlane!
     
+    
+    
     override func didMove(to view: SKView) {
         configuredStartScene()
         spawnClouds()
         spawnIsland()
-        player.performFly()
+        performFlying()
+        
+        let powerUp = PowerUp()
+        powerUp.performRotation()
+        powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        self.addChild(powerUp)
     }
     
     
-
+    
     fileprivate func configuredStartScene() {
         let screeenCenterPOint = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         let backgound = Background.populateBackground(at: screeenCenterPOint)
@@ -52,7 +59,15 @@ class GameScene: SKScene {
         run(spawnIslandForever)
     }
     
+    fileprivate func performFlying() {
+        let deadLine = DispatchTime.now() + .nanoseconds(1)
+        DispatchQueue.main.asyncAfter(deadline: deadLine) { [unowned self] in 
+            self.player.performFly()
+            
+        }
+    }
     override func didSimulatePhysics() {
+        
         player.checkPOsition()
         
         enumerateChildNodes(withName: "BackgroundSprite") { node, stop in
