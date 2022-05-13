@@ -25,6 +25,8 @@
 		605E8A3B282E634100C23D92 /* Enemy_1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A3A282E634100C23D92 /* Enemy_1.atlas */; };
 		605E8A3D282E6CA600C23D92 /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */; };
 		605E8A3F282E734700C23D92 /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A3E282E734600C23D92 /* BluePowerUp.atlas */; };
+		60CF06E3282E7689002012A2 /* BluePowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF06E2282E7689002012A2 /* BluePowerUp.swift */; };
+		60CF06E5282E7695002012A2 /* GreenPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF06E4282E7695002012A2 /* GreenPowerUp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		605E8A3A282E634100C23D92 /* Enemy_1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_1.atlas; sourceTree = "<group>"; };
 		605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 		605E8A3E282E734600C23D92 /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
+		60CF06E2282E7689002012A2 /* BluePowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluePowerUp.swift; sourceTree = "<group>"; };
+		60CF06E4282E7695002012A2 /* GreenPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenPowerUp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				605E8A2E282E4CE400C23D92 /* MainPowerUp.swift */,
+				60CF06E2282E7689002012A2 /* BluePowerUp.swift */,
+				60CF06E4282E7695002012A2 /* GreenPowerUp.swift */,
 			);
 			path = Powers;
 			sourceTree = "<group>";
@@ -229,9 +235,11 @@
 				6002F960282D70570088EBAB /* PlayerPlane.swift in Sources */,
 				6002F947282D5F7D0088EBAB /* GameViewController.swift in Sources */,
 				6002F93F282D5F7D0088EBAB /* AppDelegate.swift in Sources */,
+				60CF06E3282E7689002012A2 /* BluePowerUp.swift in Sources */,
 				6002F95E282D69E50088EBAB /* SpriteProtocol.swift in Sources */,
 				6002F95B282D69980088EBAB /* Clouds.swift in Sources */,
 				605E8A38282E5F3E00C23D92 /* Enemy.swift in Sources */,
+				60CF06E5282E7695002012A2 /* GreenPowerUp.swift in Sources */,
 				6002F958282D647A0088EBAB /* Island.swift in Sources */,
 				605E8A2F282E4CE400C23D92 /* MainPowerUp.swift in Sources */,
 				6002F956282D62320088EBAB /* Background.swift in Sources */,

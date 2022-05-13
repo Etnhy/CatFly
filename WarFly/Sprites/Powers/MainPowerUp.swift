@@ -6,15 +6,14 @@
 //
 
 import SpriteKit
-import UIKit
 
 class MainPowerUp: SKSpriteNode {
     
-    let initialSize = CGSize(width: 52.0, height: 52.0)
+    fileprivate let initialSize = CGSize(width: 52.0, height: 52.0)
     
-    let textureAtlas: SKTextureAtlas!
-    var textureNameBeginsWith = ""
-    var animationSpriteArray = [SKTexture]()
+    fileprivate let textureAtlas: SKTextureAtlas!
+    fileprivate var textureNameBeginsWith = ""
+    fileprivate var animationSpriteArray = [SKTexture]()
     
     init(textureAtlas: SKTextureAtlas) {
         self.textureAtlas = textureAtlas
@@ -25,10 +24,18 @@ class MainPowerUp: SKSpriteNode {
         
         super.init(texture: texture , color: .clear, size: initialSize)
         self.setScale(0.7)
-        self.name = "power_up"
+        self.name = "sprite"
         self.zPosition = 20
     }
-    func performRotation() {
+    
+    func startMovement() {
+        performRotation()
+        
+        let moveForward = SKAction.moveTo(y: -100, duration: 5)
+        self.run(moveForward)
+    }
+    
+   fileprivate func performRotation() {
         for i in 1...15 {
             let number = String(format: "%02d", i)
             animationSpriteArray.append(SKTexture(imageNamed: textureNameBeginsWith + number.description))
@@ -45,23 +52,5 @@ class MainPowerUp: SKSpriteNode {
     }
 }
 
-class BluePowerUp: MainPowerUp {
-    init() {
-        let textureAtlas = SKTextureAtlas(named: "BluePowerUp")
-        super.init(textureAtlas: textureAtlas)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
-class GreenPowerUp: MainPowerUp {
-    init() {
-        let textureAtlas = SKTextureAtlas(named: "GreenPowerUp")
-        super.init(textureAtlas: textureAtlas)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
+
