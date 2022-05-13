@@ -83,12 +83,14 @@ class GameScene: SKScene {
     }
     
     fileprivate func spawnPowerUp() {
-        let powerUp = PowerUp()
+        let powerUp = GreenPowerUp()
         powerUp.performRotation()
         powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(powerUp)
 
     }
+    
+    
     fileprivate func configuredStartScene() {
         let screeenCenterPOint = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         let backgound = Background.populateBackground(at: screeenCenterPOint)
@@ -98,6 +100,7 @@ class GameScene: SKScene {
         player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         self.addChild(player)
     }
+    
     fileprivate func spawnClouds() {
         let spawnCloudWait = SKAction.wait(forDuration: 1)
         let spawnCloudAction = SKAction.run {
@@ -108,6 +111,7 @@ class GameScene: SKScene {
         let spawnCloudForever = SKAction.repeatForever(spawnCloudSequence)
         run(spawnCloudForever)
     }
+    
     fileprivate func spawnIsland() {
         let spawnIslandWait = SKAction.wait(forDuration: 2)
         let spawnIslandAction = SKAction.run {
@@ -118,6 +122,7 @@ class GameScene: SKScene {
         let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence)
         run(spawnIslandForever)
     }
+    
     
     fileprivate func performFlying() {
         let deadLine = DispatchTime.now() + .nanoseconds(1)
