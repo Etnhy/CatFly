@@ -13,39 +13,19 @@ class GameScene: SKScene {
     
     var player: PlayerPlane!
     
-    
-    
     override func didMove(to view: SKView) {
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector.zero
+        
         configuredStartScene()
         spawnClouds()
         spawnIsland()
         performFlying()
         
         spawnPowerUp()
-        
-        /* enemy */
-//        spawnEnemy(_count: 5)
-//        spawnEnemysNoSpiral(_count: 15)
         spawnEnemies()
     }
     
-//    fileprivate func spawnEnemysNoSpiral(_count: Int) {
-//        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_1")
-//        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas2]) {
-//            
-//            let spawnEnemy = SKAction.wait(forDuration: 1)
-//            let actionSpawn = SKAction.run {
-//                Enemy.textureAtlas = enemyTextureAtlas2
-//                let enemy = Enemy.populate(at: nil)
-//                self.addChild(enemy)
-//            }
-//            let spawnEnemySequence = SKAction.sequence([spawnEnemy,actionSpawn])
-//            let repeat2  = SKAction.repeat(spawnEnemySequence, count: 40)
-//            self.run(repeat2)
-//            
-//        }
-//
-//    }
     fileprivate func spawnEnemies() {
         let waitAction = SKAction.wait(forDuration: 3)
         let spawnSpiralAction = SKAction.run { [unowned self] in
@@ -179,4 +159,32 @@ class GameScene: SKScene {
         playerFire()
     }
 
+}
+// MARK: - SKPhysicsContactDelegate
+extension GameScene :SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+//        print(contact.contactPoint)
+        
+        let bodyA   = contact.bodyA.categoryBitMask
+        let bodyB   = contact.bodyB.categoryBitMask
+        let player  = BitMaskCategory.player
+        let enemy   = BitMaskCategory.enemy
+        let shot    = BitMaskCategory.shot
+        let powerUp = BitMaskCategory.powerUp
+        
+        if bodyA == player && bodyB == enemy || bodyB == player && bodyA == enemy {
+            print("enemy vs player")
+        } else if bodyA == player && bodyB == powerUp || bodyB == player && bodyA == powerUp {
+            print("powerUp vs player")
+        } else if bodyA == shot && bodyB == enemy || bodyB == shot && bodyA == enemy {
+            print("enemy vs shot")
+        }
+
+        
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+    }
 }

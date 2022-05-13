@@ -20,17 +20,13 @@ final class Enemy: SKSpriteNode { //, GameBackgroundSpriteabale
         self.zPosition = 20
         self.name = "sprite"
         
+        self.physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.5, size: self.size)
+        physicsBody?.isDynamic = true
+        self.physicsBody?.categoryBitMask    = BitMaskCategory.enemy
+        self.physicsBody?.collisionBitMask   = BitMaskCategory.player | BitMaskCategory.shot
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.player | BitMaskCategory.shot
+
     }
-//    static func populate(at point: CGPoint?) -> Enemy {
-//        let enemy = Enemy()
-//        enemy.position = point ?? randomPoint()
-//        enemy.zPosition = 10
-//        enemy.name = "sprite"
-//        enemy.anchorPoint = CGPoint(x: 0.5, y: 1.0)
-//        enemy.run(move(from: enemy.position))
-//        return enemy
-//
-//    }
     fileprivate static func move(from point: CGPoint) -> SKAction {
         let movePoint = CGPoint(x: point.x, y: -200)
         let moveDistance = point.y + 200

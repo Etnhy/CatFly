@@ -30,6 +30,29 @@ class PlayerPlane: SKSpriteNode {
         playerPlane.setScale(0.5)
         playerPlane.position = point
         playerPlane.zPosition = 40
+        
+        let offsetX = playerPlane.frame.size.width * playerPlane.anchorPoint.x
+        let offsetY = playerPlane.frame.size.height * playerPlane.anchorPoint.y
+        
+        let path = CGMutablePath()
+        path.move(to: CGPoint(x: 9 - offsetX, y: 75 - offsetY))
+        path.addLine(to: CGPoint(x: 63 - offsetX, y: 85 - offsetY))
+        path.addLine(to: CGPoint(x: 70 - offsetX, y: 98 - offsetY))
+        path.addLine(to: CGPoint(x: 77 - offsetX, y: 99 - offsetY))
+        path.addLine(to: CGPoint(x: 85 - offsetX, y: 86 - offsetY))
+        path.addLine(to: CGPoint(x: 140 - offsetX, y: 76 - offsetY))
+        path.addLine(to: CGPoint(x: 141 - offsetX, y: 67 - offsetY))
+        path.addLine(to: CGPoint(x: 87 - offsetX, y: 57 - offsetY))
+        path.addLine(to: CGPoint(x: 9 - offsetX, y: 65 - offsetY))
+        path.addLine(to: CGPoint(x: 9 - offsetX, y: 75 - offsetY))
+        path.closeSubpath()
+        playerPlane.physicsBody = SKPhysicsBody(polygonFrom: path)
+//        playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)
+        playerPlane.physicsBody?.isDynamic = false
+        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player
+        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp
+        playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp
+
         return playerPlane
     }
     
