@@ -10,7 +10,7 @@ import SpriteKit
 
 class GreenPowerUp: MainPowerUp {
     init() {
-        let textureAtlas = SKTextureAtlas(named: "GreenPowerUp")
+        let textureAtlas = AssetsStorage.shared.greenPowerUpAtlas
         super.init(textureAtlas: textureAtlas)
     }
     required init?(coder aDecoder: NSCoder) {
