@@ -23,8 +23,7 @@ class PlayerPlane: SKSpriteNode {
     
     let animationSpritesStrite = [(13,1,-1),(13,26,1),(13,13,1)]
 
-    
-    
+
     static func populate(at point: CGPoint) -> PlayerPlane {
         let playerPlaneTexture = SKTexture(imageNamed: "airplane_3ver2_13")
         let playerPlane = PlayerPlane(texture: playerPlaneTexture)
@@ -33,7 +32,6 @@ class PlayerPlane: SKSpriteNode {
         playerPlane.zPosition = 20
         return playerPlane
     }
-    
     
     func checkPOsition() {
         self.position.x += xAcceleration * 50
@@ -44,7 +42,6 @@ class PlayerPlane: SKSpriteNode {
         }
     }
     
-    
     func performFly () {
         preloadTexturesArrays()
         motionManager.accelerometerUpdateInterval = 0.2
@@ -52,10 +49,8 @@ class PlayerPlane: SKSpriteNode {
             if let data = data {
                 let acceleration = data.acceleration
                 self.xAcceleration = CGFloat(acceleration.x) * 0.7 + self.xAcceleration * 0.3
-                print(self.xAcceleration)
             }
         }
-        
         let planeWaitAction = SKAction.wait(forDuration: 1.0)
         let planeDirectionCheckAction = SKAction.run { [unowned self] in
             self.movementDirectionCheck()
@@ -91,11 +86,11 @@ class PlayerPlane: SKSpriteNode {
     }
 
     fileprivate func movementDirectionCheck() {
-        if xAcceleration > 0.07, moveDirection != .right, stillTurning == false {
+        if xAcceleration > 0.01, moveDirection != .right, stillTurning == false {
             stillTurning = true
             moveDirection = .right
             turnPlane(direction: .right)
-        } else if xAcceleration < -0.07, moveDirection != .left, stillTurning == false {
+        } else if xAcceleration < -0.01, moveDirection != .left, stillTurning == false {
             stillTurning = true
             moveDirection = .left
             turnPlane(direction: .left)
@@ -115,8 +110,8 @@ class PlayerPlane: SKSpriteNode {
             array = forwardTextureArrayAnimation
         }
         
-        let forwardAction = SKAction.animate(with: array, timePerFrame: 0.05, resize: true, restore: false)
-        let backwardAction = SKAction.animate(with: array.reversed(), timePerFrame: 0.05, resize: true, restore: false)
+        let forwardAction = SKAction.animate(with: array, timePerFrame: 0.06, resize: true, restore: false)
+        let backwardAction = SKAction.animate(with: array.reversed(), timePerFrame: 0.06, resize: true, restore: false)
         let sequenceAction = SKAction.sequence([forwardAction, backwardAction])
         self.run(sequenceAction) { [unowned self] in
             self.stillTurning = false
