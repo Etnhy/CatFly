@@ -23,6 +23,7 @@
 		605E8A31282E4D6C00C23D92 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */; };
 		605E8A38282E5F3E00C23D92 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E8A37282E5F3E00C23D92 /* Enemy.swift */; };
 		605E8A3B282E634100C23D92 /* Enemy_1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A3A282E634100C23D92 /* Enemy_1.atlas */; };
+		605E8A3D282E6CA600C23D92 /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GreenPowerUp.atlas; sourceTree = "<group>"; };
 		605E8A37282E5F3E00C23D92 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		605E8A3A282E634100C23D92 /* Enemy_1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_1.atlas; sourceTree = "<group>"; };
+		605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				6002F94B282D5F7F0088EBAB /* Assets.xcassets */,
 				6002F94D282D5F7F0088EBAB /* LaunchScreen.storyboard */,
 				6002F93E282D5F7D0088EBAB /* AppDelegate.swift */,
+				605E8A3C282E6CA600C23D92 /* Enemy_2.atlas */,
 				605E8A3A282E634100C23D92 /* Enemy_1.atlas */,
 				6002F998282D71640088EBAB /* PlayerPlane.atlas */,
 				605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */,
@@ -201,6 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				605E8A3D282E6CA600C23D92 /* Enemy_2.atlas in Resources */,
 				605E8A3B282E634100C23D92 /* Enemy_1.atlas in Resources */,
 				6002F94A282D5F7D0088EBAB /* Main.storyboard in Resources */,
 				605E8A31282E4D6C00C23D92 /* GreenPowerUp.atlas in Resources */,

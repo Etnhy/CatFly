@@ -22,23 +22,62 @@ class GameScene: SKScene {
         performFlying()
         
         spawnPowerUp()
-        spawnEnemy(_count: 5)
-    
+        
+        /* enemy */
+//        spawnEnemy(_count: 5)
+//        spawnEnemysNoSpiral(_count: 15)
+        spawnEnemies()
     }
     
-    fileprivate func spawnEnemy(_count: Int) {
+//    fileprivate func spawnEnemysNoSpiral(_count: Int) {
+//        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_1")
+//        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas2]) {
+//            
+//            let spawnEnemy = SKAction.wait(forDuration: 1)
+//            let actionSpawn = SKAction.run {
+//                Enemy.textureAtlas = enemyTextureAtlas2
+//                let enemy = Enemy.populate(at: nil)
+//                self.addChild(enemy)
+//            }
+//            let spawnEnemySequence = SKAction.sequence([spawnEnemy,actionSpawn])
+//            let repeat2  = SKAction.repeat(spawnEnemySequence, count: 40)
+//            self.run(repeat2)
+//            
+//        }
+//
+//    }
+    fileprivate func spawnEnemies() {
+        let waitAction = SKAction.wait(forDuration: 3)
+        let spawnSpiralAction = SKAction.run { [unowned self] in
+            self.spawnSpiralOfEnemise()
+        }
+        let spawnAction = SKAction.sequence([waitAction, spawnSpiralAction])
+        let repeatAction = SKAction.repeatForever(spawnAction)
+        self.run(repeatAction)
+        
+//        self.run(SKAction.repeatForever(SKAction.sequence([waitAction,spawnSpiralAction])))
+    }
+    fileprivate func spawnSpiralOfEnemise() {
         let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
-        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
-            Enemy.textureAtlas = enemyTextureAtlas
+        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+
+        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas, enemyTextureAtlas2]) { [unowned self] in
+            let nubmerRandom = Int(arc4random_uniform(2))
+            
+            let arrayOfAtlasses = [enemyTextureAtlas,enemyTextureAtlas2]
+            let textureAtlas = arrayOfAtlasses[nubmerRandom]
+            
             let waitAction = SKAction.wait(forDuration: 1.0)
-            let spawnEnemy = SKAction.run {
-                let enemy = Enemy()
+            let spawnEnemy = SKAction.run { [unowned self] in
+                let textureNames = textureAtlas.textureNames.sorted()
+                let texture = textureAtlas.textureNamed(textureNames[12])
+                let enemy = Enemy(enemyTexture: texture)
                 enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height + 110)
                 self.addChild(enemy)
                 enemy.flySpiral()
             }
             let spawnAction = SKAction.sequence([waitAction, spawnEnemy])
-            let repeatAction = SKAction.repeat(spawnAction, count: _count)
+            let repeatAction = SKAction.repeat(spawnAction, count: 3)
             self.run(repeatAction)
         }
     }

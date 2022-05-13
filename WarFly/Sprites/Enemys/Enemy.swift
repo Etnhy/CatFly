@@ -7,12 +7,13 @@
 
 import SpriteKit
 
-class Enemy: SKSpriteNode {
-    
+final class Enemy: SKSpriteNode { //, GameBackgroundSpriteabale
+
     static var textureAtlas : SKTextureAtlas?
+    var enemyTextures: SKTexture?
     
-    init() {
-        let texture = Enemy.textureAtlas?.textureNamed("airplane_4ver2_13")
+    init(enemyTexture: SKTexture) {
+        let texture = enemyTexture
         super.init(texture: texture, color: .clear, size: CGSize(width: 221, height: 204))
         self.xScale = 0.5
         self.yScale = -0.5 //разворот
@@ -20,18 +21,40 @@ class Enemy: SKSpriteNode {
         self.name = "sprite"
         
     }
-    
+//    static func populate(at point: CGPoint?) -> Enemy {
+//        let enemy = Enemy()
+//        enemy.position = point ?? randomPoint()
+//        enemy.zPosition = 10
+//        enemy.name = "sprite"
+//        enemy.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+//        enemy.run(move(from: enemy.position))
+//        return enemy
+//
+//    }
+    fileprivate static func move(from point: CGPoint) -> SKAction {
+        let movePoint = CGPoint(x: point.x, y: -200)
+        let moveDistance = point.y + 200
+        let movementSpeed: CGFloat = 150.0
+        let duration = moveDistance / movementSpeed
+        return SKAction.move(to: movePoint, duration: TimeInterval(duration))
+    }
+
+
     func flySpiral() {
         let screenSize = UIScreen.main.bounds
         let timeHorizontal: Double = 3
-        let timeViertical: Double = 10
+        let timeViertical: Double = 7
         
         let moveLeft = SKAction.moveTo(x: 50, duration: timeHorizontal)
         moveLeft.timingMode = .easeInEaseOut
+        
+        let randomNuber = Int(arc4random_uniform(2))
         let moveRight = SKAction.moveTo(x: screenSize.width - 50, duration: timeHorizontal)
         moveRight.timingMode = .easeInEaseOut
-        let sideMovementSequense = SKAction.sequence([moveLeft,moveRight])
         
+        
+        let sideMovementSequense = randomNuber == EnemyDirection.left.rawValue ? SKAction.sequence([moveLeft,moveRight]) : SKAction.sequence([moveRight,moveLeft])
+
         let foreverSideMovement = SKAction.repeatForever(sideMovementSequense)
         
         let forwardMovement = SKAction.moveTo(y: -105, duration: timeViertical)
@@ -45,4 +68,9 @@ class Enemy: SKSpriteNode {
     }
     
     
+}
+
+enum EnemyDirection: Int {
+    case left = 0
+    case right
 }
