@@ -17,6 +17,25 @@ class GameScene: ParentScene {
     fileprivate let hud = HUD()
     fileprivate let screenSize = UIScreen.main.bounds.size
     fileprivate let pauseNode = SKNode()
+    fileprivate var lives = 3 {
+        didSet {
+            switch lives {
+            case 3:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = false
+                hud.life3.isHidden = false
+            case 2:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = false
+                hud.life3.isHidden = true
+            case 1:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = true
+                hud.life3.isHidden = true
+            default: break
+            }
+        }
+    }
     
     // MARK: - didMove to:
     override func didMove(to view: SKView) {
@@ -188,13 +207,53 @@ class GameScene: ParentScene {
 // MARK: - SKPhysicsContactDelegate
 extension GameScene :SKPhysicsContactDelegate {
     
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let contactCategory: BitMaskCategory = [contact.bodyA.category, contact.bodyB.category]
         
+        let explosion = SKEmitterNode(fileNamed: "EnemyExplosion")
+        explosion?.zPosition = 25
+        let contactPoint = contact.contactPoint
+        explosion?.position = contactPoint
+        
+        let waitForExplosionAction = SKAction.wait(forDuration: 1)
+        
+        
         switch contactCategory {
-        case [.enemy, .player]: print("enemy vs player")
+            
+        case [.enemy, .player]  : print("enemy vs player")
+            if contact.bodyA.node?.name == "sprite" {
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                    lives -= 1
+                }
+            } else {
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                    lives -= 1
+                }
+            }
+            addChild(explosion!)
+            self.run(waitForExplosionAction){ explosion?.removeFromParent() }
+
         case [.powerUp, .player]: print("powerUp vs player")
-        case [.enemy, .shot]: print("enemy vs shot")
+            
+        case [.enemy, .shot]    : print("enemy vs shot")
+            if contact.bodyA.node?.name == "sprite" {
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                }
+            } else {
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                }
+            }
+
+            
+            
+            addChild(explosion!)
+            self.run(waitForExplosionAction){ explosion?.removeFromParent() }
+            
         default: preconditionFailure("Unable to detect collision category")
             
         
