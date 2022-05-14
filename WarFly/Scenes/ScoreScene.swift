@@ -9,16 +9,17 @@ import SpriteKit
 
 class ScoreScene: ParentScene {
 
-    var places = [10,100,1000,435,8374,2364,123,975,666]
+    var places: [Int]!
     
     override func didMove(to view: SKView) {
+        gameSettings.loadScores()
+        places = gameSettings.highScore
         setHeader(with: "scores", background: "header_background")
         setBackNode()
         
         
-        let topPlaces = places.sorted { $0 > $1 }.prefix(7)
         
-        for (index,value) in topPlaces.enumerated() {
+        for (index,value) in places.enumerated() {
             let l = SKLabelNode(text: value.description)
             l.fontColor = UIColor(red: 219 / 255, green: 226 / 255, blue: 215 / 255, alpha: 1)
             l.fontName = "AmericanTypewriter-Bold"

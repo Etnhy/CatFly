@@ -34,6 +34,7 @@
 		604E4A672830354A009CEC85 /* shot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 604E4A662830354A009CEC85 /* shot.wav */; };
 		604E4A6928303609009CEC85 /* powerUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 604E4A6828303609009CEC85 /* powerUp.wav */; };
 		604E4A6B28303809009CEC85 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4A6A28303809009CEC85 /* GameSettings.swift */; };
+		604E4A6E283040DD009CEC85 /* GameSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4A6D283040DD009CEC85 /* GameSettingsKeys.swift */; };
 		605E8A2F282E4CE400C23D92 /* MainPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E8A2E282E4CE400C23D92 /* MainPowerUp.swift */; };
 		605E8A31282E4D6C00C23D92 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */; };
 		605E8A38282E5F3E00C23D92 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E8A37282E5F3E00C23D92 /* Enemy.swift */; };
@@ -79,6 +80,7 @@
 		604E4A662830354A009CEC85 /* shot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shot.wav; sourceTree = "<group>"; };
 		604E4A6828303609009CEC85 /* powerUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerUp.wav; sourceTree = "<group>"; };
 		604E4A6A28303809009CEC85 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
+		604E4A6D283040DD009CEC85 /* GameSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsKeys.swift; sourceTree = "<group>"; };
 		605E8A2E282E4CE400C23D92 /* MainPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPowerUp.swift; sourceTree = "<group>"; };
 		605E8A30282E4D6C00C23D92 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GreenPowerUp.atlas; sourceTree = "<group>"; };
 		605E8A37282E5F3E00C23D92 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -192,6 +194,15 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		604E4A6C283040CE009CEC85 /* GameSettings */ = {
+			isa = PBXGroup;
+			children = (
+				604E4A6A28303809009CEC85 /* GameSettings.swift */,
+				604E4A6D283040DD009CEC85 /* GameSettingsKeys.swift */,
+			);
+			path = GameSettings;
+			sourceTree = "<group>";
+		};
 		605E8A32282E5ECA00C23D92 /* ground */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +253,7 @@
 				60942F8B282E8E1B001CFF90 /* BitMaskCategory.swift */,
 				60CF06EF282E83D1002012A2 /* AssetsStorage.swift */,
 				60265265282FB85B00E4C2D0 /* SceneManager.swift */,
-				604E4A6A28303809009CEC85 /* GameSettings.swift */,
+				604E4A6C283040CE009CEC85 /* GameSettings */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -363,6 +374,7 @@
 				6002F960282D70570088EBAB /* PlayerPlane.swift in Sources */,
 				6002F947282D5F7D0088EBAB /* GameViewController.swift in Sources */,
 				6002F93F282D5F7D0088EBAB /* AppDelegate.swift in Sources */,
+				604E4A6E283040DD009CEC85 /* GameSettingsKeys.swift in Sources */,
 				60CF06E3282E7689002012A2 /* BluePowerUp.swift in Sources */,
 				6002F95E282D69E50088EBAB /* SpriteProtocol.swift in Sources */,
 				6002F95B282D69980088EBAB /* Clouds.swift in Sources */,

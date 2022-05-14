@@ -29,7 +29,6 @@ class PauseScene: ParentScene {
         if let gameScene = sceneManager.gameScene {
             if !gameScene.isPaused {
                 gameScene.isPaused = true
-                print("changed##############")
             }
         }
     }
