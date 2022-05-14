@@ -95,7 +95,7 @@
 		6002F93D282D5F7D0088EBAB /* WarFly */ = {
 			isa = PBXGroup;
 			children = (
-				60CF06EF282E83D1002012A2 /* AssetsStorage.swift */,
+				60942F8D282E9C67001CFF90 /* Resources */,
 				6002F959282D69460088EBAB /* Sprites */,
 				60CF06F1282E87AA002012A2 /* Scenes */,
 				6002F955282D62320088EBAB /* Background.swift */,
@@ -105,7 +105,6 @@
 				6002F94D282D5F7F0088EBAB /* LaunchScreen.storyboard */,
 				6002F93E282D5F7D0088EBAB /* AppDelegate.swift */,
 				60CF06E8282E7CD3002012A2 /* Atlases */,
-				60942F8B282E8E1B001CFF90 /* BitMaskCategory.swift */,
 			);
 			path = WarFly;
 			sourceTree = "<group>";
@@ -165,6 +164,15 @@
 				605E8A37282E5F3E00C23D92 /* Enemy.swift */,
 			);
 			path = Enemies;
+			sourceTree = "<group>";
+		};
+		60942F8D282E9C67001CFF90 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				60942F8B282E8E1B001CFF90 /* BitMaskCategory.swift */,
+				60CF06EF282E83D1002012A2 /* AssetsStorage.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		60CF06E8282E7CD3002012A2 /* Atlases */ = {

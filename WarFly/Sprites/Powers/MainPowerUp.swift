@@ -30,9 +30,9 @@ class MainPowerUp: SKSpriteNode {
         
         self.physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.5, size: self.size)
         physicsBody?.isDynamic = true
-        self.physicsBody?.categoryBitMask    = BitMaskCategory.powerUp
-        self.physicsBody?.collisionBitMask   = BitMaskCategory.player
-        self.physicsBody?.contactTestBitMask = BitMaskCategory.player 
+        self.physicsBody?.categoryBitMask    = BitMaskCategory.powerUp.rawValue
+        self.physicsBody?.collisionBitMask   = BitMaskCategory.player.rawValue
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.player .rawValue
 
     }
     

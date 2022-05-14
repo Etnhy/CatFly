@@ -20,8 +20,8 @@ class GameScene: SKScene {
         configuredStartScene()
         spawnClouds()
         spawnIsland()
-        performFlying()
-        
+        self.player.performFly()
+
         spawnPowerUp()
         spawnEnemies()
     }
@@ -66,7 +66,7 @@ class GameScene: SKScene {
     fileprivate func spawnPowerUp() {
 
         let spawnAction = SKAction.run {
-            var randomNumber = Int(arc4random_uniform(2))
+            let randomNumber = Int(arc4random_uniform(2))
             let powerUp = randomNumber == 1 ? BluePowerUp() : GreenPowerUp()
             let randomPositionX = arc4random_uniform(UInt32(self.size.width - 30))
             
@@ -114,15 +114,7 @@ class GameScene: SKScene {
         let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence)
         run(spawnIslandForever)
     }
-    
-    
-    fileprivate func performFlying() {
-        let deadLine = DispatchTime.now() + .nanoseconds(1)
-        DispatchQueue.main.asyncAfter(deadline: deadLine) { [unowned self] in 
-            self.player.performFly()
-            
-        }
-    }
+
     override func didSimulatePhysics() {
         
         player.checkPOsition()
@@ -164,8 +156,18 @@ class GameScene: SKScene {
 extension GameScene :SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
-//        print(contact.contactPoint)
+        let contactCategory: BitMaskCategory = [contact.bodyA.category, contact.bodyB.category]
         
+        switch contactCategory {
+        case [.enemy, .player]: print("enemy vs player")
+        case [.powerUp, .player]: print("powerUp vs player")
+        case [.enemy, .shot]: print("enemy vs shot")
+        default: preconditionFailure("Unable to detect collision category")
+            
+        
+        }
+//        print(contact.contactPoint)
+        /*
         let bodyA   = contact.bodyA.categoryBitMask
         let bodyB   = contact.bodyB.categoryBitMask
         let player  = BitMaskCategory.player
@@ -180,7 +182,7 @@ extension GameScene :SKPhysicsContactDelegate {
         } else if bodyA == shot && bodyB == enemy || bodyB == shot && bodyA == enemy {
             print("enemy vs shot")
         }
-
+         */
         
     }
     
