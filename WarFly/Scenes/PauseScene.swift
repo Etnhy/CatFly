@@ -7,15 +7,12 @@
 
 import SpriteKit
 
-class PauseScene: SKScene {
-
+class PauseScene: ParentScene {
     
     override func didMove(to view: SKView) {
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1)
         
-        let header = ButtonNode(title: "pause", backgoundName: "header_background")
-        header.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 80)
-        self.addChild(header)
+        setHeader(with: "pause", background: "header_background")
         
         let titles = ["restart","options", "resume"]
         
@@ -26,9 +23,16 @@ class PauseScene: SKScene {
             button.name = title
             button.label.name = title
             self.addChild(button)
-
         }
-        
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if let gameScene = sceneManager.gameScene {
+            if !gameScene.isPaused {
+                gameScene.isPaused = true
+                print("changed##############")
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -36,11 +40,19 @@ class PauseScene: SKScene {
         let node = self.atPoint(location)
         
         if node.name == "restart" {
-            let transition = SKTransition.doorsOpenHorizontal(withDuration: 1)//crossFade(withDuration: 1)
+            sceneManager.gameScene = nil
+            let transition = SKTransition.doorsOpenHorizontal(withDuration: 1)
             let gameScene = GameScene(size: self.size)
             gameScene.scaleMode = .aspectFill
             self.scene?.view?.presentScene(gameScene, transition: transition)
+            
+        } else if node.name == "resume" {
+            let transition = SKTransition.doorsOpenHorizontal(withDuration: 1)
+            guard let gameScene = sceneManager.gameScene else {return}
+            gameScene.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(gameScene, transition: transition)
         }
+        
     }
 
     

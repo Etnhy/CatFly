@@ -9,15 +9,21 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene {
+class GameScene: ParentScene {
+    
+
     
     fileprivate var player: PlayerPlane!
     fileprivate let hud = HUD()
     fileprivate let screenSize = UIScreen.main.bounds.size
-
+    fileprivate let pauseNode = SKNode()
     
     // MARK: - didMove to:
     override func didMove(to view: SKView) {
+        self.scene?.isPaused = false
+        // checing if scene persists
+        guard sceneManager.gameScene == nil else {return}
+        sceneManager.gameScene = self
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector.zero
@@ -169,17 +175,16 @@ class GameScene: SKScene {
             let transition = SKTransition.doorsCloseHorizontal(withDuration: 1)
             let pauseScene = PauseScene(size: self.size)
             pauseScene.scaleMode = .aspectFill
+            sceneManager.gameScene = self
+            self.scene?.isPaused = true
             self.scene?.view?.presentScene(pauseScene, transition: transition)
         } else {
             playerFire()
 
         }
-        
-
     }
-
-
 }
+
 // MARK: - SKPhysicsContactDelegate
 extension GameScene :SKPhysicsContactDelegate {
     

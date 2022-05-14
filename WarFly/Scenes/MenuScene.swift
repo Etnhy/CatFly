@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class MenuScene: SKScene {
+class MenuScene: ParentScene {
 
     override func didMove(to view: SKView) {
         if !AssetsStorage.shared.isLoaded {
@@ -16,9 +16,12 @@ class MenuScene: SKScene {
         }
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1)
         
-        let header = SKSpriteNode(imageNamed: "header")
-        header.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 80)
-        self.addChild(header)
+        
+        setHeader(with: nil, background: "header")
+
+//        let header = SKSpriteNode(imageNamed: "header")
+//        header.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 80)
+//        self.addChild(header)
         
         let titles = ["play","options", "scores"]
         
