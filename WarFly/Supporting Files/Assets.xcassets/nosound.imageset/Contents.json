@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "gachi1.jpeg",
+      "filename" : "nosound.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "nosound@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "nosound@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

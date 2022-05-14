@@ -11,7 +11,7 @@ class ParentScene: SKScene {
     
     let sceneManager = SceneManager.shared
     var backScene: SKScene?
-    
+    let gameSettings = GameSettings()
 
     
     func setHeader(with name: String?, background: String) {

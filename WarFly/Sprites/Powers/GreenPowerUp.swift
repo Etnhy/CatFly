@@ -12,7 +12,7 @@ class GreenPowerUp: MainPowerUp {
     init() {
         let textureAtlas = AssetsStorage.shared.greenPowerUpAtlas
         super.init(textureAtlas: textureAtlas)
-//        self.name = "greenPower"
+        self.name = PowerUpNames.greenPowerUp
 
     }
     required init?(coder aDecoder: NSCoder) {

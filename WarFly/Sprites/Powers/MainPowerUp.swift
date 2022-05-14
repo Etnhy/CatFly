@@ -24,7 +24,7 @@ class MainPowerUp: SKSpriteNode {
         
         super.init(texture: texture , color: .clear, size: initialSize)
         self.setScale(0.45)
-        self.name = "sprite"
+//        self.name = "sprite"
         self.zPosition = 20
         
         
@@ -62,3 +62,7 @@ class MainPowerUp: SKSpriteNode {
 
 
 
+struct PowerUpNames {
+   static let bluePowerUp  = "bluePowerUp"
+   static let greenPowerUp = "greenPowerUp"
+}
