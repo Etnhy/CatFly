@@ -14,8 +14,8 @@ class PlayerPlane: SKSpriteNode {
     var xAcceleration: CGFloat = 0
     let screenSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     
-    var leftTextureArrayAnimation = [SKTexture]()
-    var rightTextureArrayAnimation = [SKTexture]()
+    var leftTextureArrayAnimation    = [SKTexture]()
+    var rightTextureArrayAnimation   = [SKTexture]()
     var forwardTextureArrayAnimation = [SKTexture]()
     
     var moveDirection: TurnDirection = .none
@@ -32,8 +32,8 @@ class PlayerPlane: SKSpriteNode {
         playerPlane.zPosition = 40
         playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)
         playerPlane.physicsBody?.isDynamic = false
-        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue
-        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
+        playerPlane.physicsBody?.categoryBitMask    = BitMaskCategory.player.rawValue
+        playerPlane.physicsBody?.collisionBitMask   = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
         playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
 
         return playerPlane
@@ -124,7 +124,24 @@ class PlayerPlane: SKSpriteNode {
         }
     }
     
+    func greenPowerUp() {
+        let colorAction = SKAction.colorize(with: .green, colorBlendFactor: 1.0, duration: 0.2)
+        let uncolorAction = SKAction.colorize(with: .green, colorBlendFactor: 0.0, duration: 0.2)
+        let sequenceAction = SKAction.sequence([colorAction, uncolorAction])
+        let repeatAction = SKAction.repeat(sequenceAction, count: 5)
+        self.run(repeatAction)
+    }
+    
+    func bluePowerUp() {
+        let colorAction = SKAction.colorize(with: .blue, colorBlendFactor: 1.0, duration: 0.2)
+        let uncolorAction = SKAction.colorize(with: .blue, colorBlendFactor: 0.0, duration: 0.2)
+        let sequenceAction = SKAction.sequence([colorAction, uncolorAction])
+        let repeatAction = SKAction.repeat(sequenceAction, count: 5)
+        self.run(repeatAction)
+    }
 }
+    
+
 
 enum TurnDirection {
     case left

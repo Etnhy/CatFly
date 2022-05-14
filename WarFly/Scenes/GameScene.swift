@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
-
+    
     
     fileprivate var player: PlayerPlane!
     fileprivate let hud = HUD()
@@ -51,7 +51,7 @@ class GameScene: ParentScene {
         spawnClouds()
         spawnIsland()
         self.player.performFly()
-
+        
         spawnPowerUp()
         spawnEnemies()
         createHUD()
@@ -71,14 +71,14 @@ class GameScene: ParentScene {
         let repeatAction = SKAction.repeatForever(spawnAction)
         self.run(repeatAction)
         
-//        self.run(SKAction.repeatForever(SKAction.sequence([waitAction,spawnSpiralAction])))
+        //        self.run(SKAction.repeatForever(SKAction.sequence([waitAction,spawnSpiralAction])))
     }
     
     fileprivate func spawnSpiralOfEnemise() {
         let atlas = AssetsStorage.shared
         let enemyTextureAtlas = atlas.enemy_1Atlas
         let enemyTextureAtlas2 = atlas.enemy_2Atlas
-
+        
         SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas, enemyTextureAtlas2]) { [unowned self] in
             let nubmerRandom = Int(arc4random_uniform(2))
             
@@ -101,17 +101,17 @@ class GameScene: ParentScene {
     }
     
     fileprivate func spawnPowerUp() {
-
         let spawnAction = SKAction.run {
             let randomNumber = Int(arc4random_uniform(2))
             let powerUp = randomNumber == 1 ? BluePowerUp() : GreenPowerUp()
             let randomPositionX = arc4random_uniform(UInt32(self.size.width - 30))
             
-            powerUp.position = CGPoint(x: CGFloat(randomPositionX), y: self.size.height + 100)
+            powerUp.position = CGPoint(x: CGFloat(randomPositionX),
+                                       y: self.size.height + 100)
             powerUp.startMovement()
             self.addChild(powerUp)
-
         }
+        
         let randomTimeSpawn = Double(arc4random_uniform(11) + 10)
         let waitAction = SKAction.wait(forDuration: randomTimeSpawn)
         
@@ -151,7 +151,7 @@ class GameScene: ParentScene {
         let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence)
         run(spawnIslandForever)
     }
-
+    
     
     // MARK: - didSimulatePhysics
     override func didSimulatePhysics() {
@@ -161,28 +161,40 @@ class GameScene: ParentScene {
         enumerateChildNodes(withName: "sprite") { node, stop in
             if node.position.y <= -100 {
                 node.removeFromParent()
-                if node.isKind(of: MainPowerUp.self) {
-                    print("power up is removed from scene")
-                }
             }
             
         }// sprite
         
+
+        
+        enumerateChildNodes(withName: "bluePower") { node, stop in
+            if node.position.y >= self.size.height + 100 {
+                node.removeFromParent()
+            }
+            
+        }// blue power up
+        
+        enumerateChildNodes(withName: "greenPower") { node, stop in
+            if node.position.y >= self.size.height + 100 {
+                node.removeFromParent()
+            }
+            
+        }// green power up
+
         enumerateChildNodes(withName: "shotSprite") { node, stop in
             if node.position.y >= self.size.height + 100 {
                 node.removeFromParent()
             }
-
+            
         }// shot
         
-
     }
     
     fileprivate func playerFire() {
         let shot = YellowShot()
         shot.position = self.player.position
         shot.startMovement()
-
+        
         self.addChild(shot)
     }
     
@@ -199,7 +211,7 @@ class GameScene: ParentScene {
             self.scene?.view?.presentScene(pauseScene, transition: transition)
         } else {
             playerFire()
-
+            
         }
     }
 }
@@ -233,47 +245,67 @@ extension GameScene :SKPhysicsContactDelegate {
                     lives -= 1
                 }
             }
+            
             addChild(explosion!)
             self.run(waitForExplosionAction){ explosion?.removeFromParent() }
-
-        case [.powerUp, .player]: print("powerUp vs player")
             
-        case [.enemy, .shot]    : print("enemy vs shot")
-            if contact.bodyA.node?.name == "sprite" {
-                if contact.bodyA.node?.parent != nil {
-                    contact.bodyA.node?.removeFromParent()
-                }
-            } else {
-                if contact.bodyB.node?.parent != nil {
-                    contact.bodyB.node?.removeFromParent()
-                }
+            if lives == 0 {
+                let gameOverScene = GameOverScene(size: self.size)
+                gameOverScene.backScene = self
+                gameOverScene.scaleMode = .aspectFill
+                self.scene?.view?.presentScene(gameOverScene, transition: .doorway(withDuration: 1))
             }
+        case [.powerUp, .player]: print("powerUp vs player")
+//            if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
+//                
+//                if contact.bodyA.node?.name == "bluePowerUp" {
+//                    contact.bodyA.node?.removeFromParent()
+//                    lives = 3
+//                    player.bluePowerUp()
+//                } else if contact.bodyB.node?.name == "bluePowerUp" {
+//                    contact.bodyB.node?.removeFromParent()
+//                    lives = 3
+//                    player.bluePowerUp()
+//                }
+//                
+//                if contact.bodyA.node?.name == "greenPowerUp" {
+//                    contact.bodyA.node?.removeFromParent()
+//                    player.greenPowerUp()
+//                } else {
+//                    contact.bodyB.node?.removeFromParent()
+//                    player.greenPowerUp()
+//                }
+//            }
 
-            
-            
-            addChild(explosion!)
-            self.run(waitForExplosionAction){ explosion?.removeFromParent() }
+        case [.enemy, .shot]    : print("enemy vs shot")
+            if contact.bodyA.node?.parent != nil {
+                contact.bodyA.node?.removeFromParent()
+                contact.bodyB.node?.removeFromParent()
+                hud.score += 5
+                addChild(explosion!)
+                self.run(waitForExplosionAction){ explosion?.removeFromParent() }
+            }
             
         default: preconditionFailure("Unable to detect collision category")
             
-        
+            
         }
-//        print(contact.contactPoint)
+        //        print(contact.contactPoint)
         /*
-        let bodyA   = contact.bodyA.categoryBitMask
-        let bodyB   = contact.bodyB.categoryBitMask
-        let player  = BitMaskCategory.player
-        let enemy   = BitMaskCategory.enemy
-        let shot    = BitMaskCategory.shot
-        let powerUp = BitMaskCategory.powerUp
-        
-        if bodyA == player && bodyB == enemy || bodyB == player && bodyA == enemy {
-            print("enemy vs player")
-        } else if bodyA == player && bodyB == powerUp || bodyB == player && bodyA == powerUp {
-            print("powerUp vs player")
-        } else if bodyA == shot && bodyB == enemy || bodyB == shot && bodyA == enemy {
-            print("enemy vs shot")
-        }
+         let bodyA   = contact.bodyA.categoryBitMask
+         let bodyB   = contact.bodyB.categoryBitMask
+         let player  = BitMaskCategory.player
+         let enemy   = BitMaskCategory.enemy
+         let shot    = BitMaskCategory.shot
+         let powerUp = BitMaskCategory.powerUp
+         
+         if bodyA == player && bodyB == enemy || bodyB == player && bodyA == enemy {
+         print("enemy vs player")
+         } else if bodyA == player && bodyB == powerUp || bodyB == player && bodyA == powerUp {
+         print("powerUp vs player")
+         } else if bodyA == shot && bodyB == enemy || bodyB == shot && bodyA == enemy {
+         print("enemy vs shot")
+         }
          */
         
     }
