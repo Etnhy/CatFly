@@ -162,8 +162,22 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        playerFire()
+        let location = touches.first!.location(in: self)
+        let node = self.atPoint(location)
+        
+        if node.name == "pause" {
+            let transition = SKTransition.doorsCloseHorizontal(withDuration: 1)
+            let pauseScene = PauseScene(size: self.size)
+            pauseScene.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(pauseScene, transition: transition)
+        } else {
+            playerFire()
+
+        }
+        
+
     }
+
 
 }
 // MARK: - SKPhysicsContactDelegate
