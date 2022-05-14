@@ -52,7 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6002F93B282D5F7D0088EBAB /* WarFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6002F93B282D5F7D0088EBAB /* CatFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6002F93E282D5F7D0088EBAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6002F944282D5F7D0088EBAB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6002F946282D5F7D0088EBAB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		6002F932282D5F7D0088EBAB = {
 			isa = PBXGroup;
 			children = (
-				6002F93D282D5F7D0088EBAB /* WarFly */,
+				6002F93D282D5F7D0088EBAB /* CatFly */,
 				6002F93C282D5F7D0088EBAB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -119,12 +119,12 @@
 		6002F93C282D5F7D0088EBAB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6002F93B282D5F7D0088EBAB /* WarFly.app */,
+				6002F93B282D5F7D0088EBAB /* CatFly.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6002F93D282D5F7D0088EBAB /* WarFly */ = {
+		6002F93D282D5F7D0088EBAB /* CatFly */ = {
 			isa = PBXGroup;
 			children = (
 				604E4A5B282FD0A7009CEC85 /* Particles */,
@@ -138,7 +138,7 @@
 				6026525F282FAE5B00E4C2D0 /* Supporting Files */,
 				60CF06E8282E7CD3002012A2 /* Atlases */,
 			);
-			path = WarFly;
+			path = CatFly;
 			sourceTree = "<group>";
 		};
 		6002F959282D69460088EBAB /* Sprites */ = {
@@ -288,9 +288,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6002F93A282D5F7D0088EBAB /* WarFly */ = {
+		6002F93A282D5F7D0088EBAB /* CatFly */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6002F952282D5F7F0088EBAB /* Build configuration list for PBXNativeTarget "WarFly" */;
+			buildConfigurationList = 6002F952282D5F7F0088EBAB /* Build configuration list for PBXNativeTarget "CatFly" */;
 			buildPhases = (
 				6002F937282D5F7D0088EBAB /* Sources */,
 				6002F938282D5F7D0088EBAB /* Frameworks */,
@@ -300,9 +300,9 @@
 			);
 			dependencies = (
 			);
-			name = WarFly;
+			name = CatFly;
 			productName = WarFly;
-			productReference = 6002F93B282D5F7D0088EBAB /* WarFly.app */;
+			productReference = 6002F93B282D5F7D0088EBAB /* CatFly.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -320,7 +320,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6002F936282D5F7D0088EBAB /* Build configuration list for PBXProject "WarFly" */;
+			buildConfigurationList = 6002F936282D5F7D0088EBAB /* Build configuration list for PBXProject "CatFly" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -333,7 +333,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6002F93A282D5F7D0088EBAB /* WarFly */,
+				6002F93A282D5F7D0088EBAB /* CatFly */,
 			);
 		};
 /* End PBXProject section */
@@ -555,8 +555,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.evhenii.mahlena.WarFly;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evhenii.mahlena.CatFly;
+				PRODUCT_NAME = CatFly;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -584,8 +584,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.evhenii.mahlena.WarFly;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evhenii.mahlena.CatFly;
+				PRODUCT_NAME = CatFly;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -595,7 +595,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6002F936282D5F7D0088EBAB /* Build configuration list for PBXProject "WarFly" */ = {
+		6002F936282D5F7D0088EBAB /* Build configuration list for PBXProject "CatFly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6002F950282D5F7F0088EBAB /* Debug */,
@@ -604,7 +604,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6002F952282D5F7F0088EBAB /* Build configuration list for PBXNativeTarget "WarFly" */ = {
+		6002F952282D5F7F0088EBAB /* Build configuration list for PBXNativeTarget "CatFly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6002F953282D5F7F0088EBAB /* Debug */,
