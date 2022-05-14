@@ -27,7 +27,7 @@ class PlayerPlane: SKSpriteNode {
     static func populate(at point: CGPoint) -> PlayerPlane {
         let playerPlaneTexture = AssetsStorage.shared.playerPlaneAtlas.textureNamed("airplane_3ver2_13")
         let playerPlane = PlayerPlane(texture: playerPlaneTexture)
-        playerPlane.setScale(0.5)
+        playerPlane.setScale(0.4)
         playerPlane.position = point
         playerPlane.zPosition = 40
         playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)

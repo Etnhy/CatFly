@@ -12,8 +12,18 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player: PlayerPlane!
+    let scoreBackgound = SKSpriteNode(imageNamed: "scores")
+    let scoreLabes = SKLabelNode(text: "10000")
+    let menuButton =  SKSpriteNode(imageNamed: "menu")
     
+    let life1 = SKSpriteNode(imageNamed: "life")
+    let life2 = SKSpriteNode(imageNamed: "life")
+    let life3 = SKSpriteNode(imageNamed: "life")
+
+    
+    // MARK: - didMove to:
     override func didMove(to view: SKView) {
+        
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector.zero
         
@@ -24,8 +34,43 @@ class GameScene: SKScene {
 
         spawnPowerUp()
         spawnEnemies()
+        configureUI()
+    }
+    // MARK: - Configure User Interface
+    fileprivate func configureUI() {
+        /* score  */
+        scoreBackgound.position = CGPoint(x: scoreBackgound.size.width + 20,
+                                          y: self.size.height - scoreBackgound.size.height / 2 - 40 )
+        scoreBackgound.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        scoreBackgound.zPosition = 99
+        addChild(scoreBackgound)
+        
+        /* label */
+        scoreLabes.horizontalAlignmentMode = .right
+        scoreLabes.verticalAlignmentMode = .center
+        scoreLabes.position = CGPoint(x: -10, y: 3)
+        scoreLabes.zPosition = 100
+        scoreLabes.fontName = "AmericanTypewriter-Bold"
+        scoreLabes.fontSize = 30
+        scoreBackgound.addChild(scoreLabes)
+        
+        menuButton.position = CGPoint(x: 20, y: 20)
+        menuButton.anchorPoint = CGPoint(x: 0, y: 0)
+        menuButton.zPosition = 100
+        addChild(menuButton)
+        
+        let lifes = [life1,life2,life3]
+        for (index, life) in lifes.enumerated() {
+            life.position = CGPoint(x: self.size.width - CGFloat(index + 1) * (life.size.width + 3),
+                                    y: self.size.height - scoreBackgound.size.height / 2 - 40)
+            life.zPosition = 100
+            life.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+            addChild(life)
+        }
     }
     
+    
+    // MARK: - -
     fileprivate func spawnEnemies() {
         let waitAction = SKAction.wait(forDuration: 3)
         let spawnSpiralAction = SKAction.run { [unowned self] in
@@ -37,6 +82,7 @@ class GameScene: SKScene {
         
 //        self.run(SKAction.repeatForever(SKAction.sequence([waitAction,spawnSpiralAction])))
     }
+    
     fileprivate func spawnSpiralOfEnemise() {
         let atlas = AssetsStorage.shared
         let enemyTextureAtlas = atlas.enemy_1Atlas
@@ -115,6 +161,8 @@ class GameScene: SKScene {
         run(spawnIslandForever)
     }
 
+    
+    // MARK: - didSimulatePhysics
     override func didSimulatePhysics() {
         
         player.checkPOsition()

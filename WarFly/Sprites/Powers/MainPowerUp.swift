@@ -23,7 +23,7 @@ class MainPowerUp: SKSpriteNode {
         textureNameBeginsWith = String(textureName.dropLast(6)) //01.png
         
         super.init(texture: texture , color: .clear, size: initialSize)
-        self.setScale(0.7)
+        self.setScale(0.45)
         self.name = "sprite"
         self.zPosition = 20
         
