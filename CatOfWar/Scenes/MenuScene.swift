@@ -8,13 +8,14 @@
 import SpriteKit
 
 class MenuScene: ParentScene {
+    var backgroundMusic: SKAudioNode!
+
 
     override func didMove(to view: SKView) {
         if !AssetsStorage.shared.isLoaded {
             AssetsStorage.shared.preloadAssets()
             AssetsStorage.shared.isLoaded = true
         }
-        
         
         setHeader(with: nil, background: "header")
 
@@ -32,6 +33,20 @@ class MenuScene: ParentScene {
             self.addChild(button)
 
         }
+        
+        let wait = SKAction.wait(forDuration: 1)
+        run(wait) {
+            if self.gameSettings.isMusic && self.backgroundMusic == nil {
+                
+                if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+                    self.backgroundMusic = SKAudioNode(url: musicURL)
+                    self.addChild(self.backgroundMusic)
+                }
+                
+            }
+
+        }
+
         
     }
     

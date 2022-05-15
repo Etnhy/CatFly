@@ -11,9 +11,12 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
-    var backgroundMusic: SKAudioNode!
+//    var backgroundMusic: SKAudioNode!
     
     fileprivate var player: PlayerPlane!
+    fileprivate var playerPosition = CGPoint()
+    fileprivate var startTouch = CGPoint()
+    
     fileprivate let hud = HUD()
     fileprivate let screenSize = UIScreen.main.bounds.size
     fileprivate let pauseNode = SKNode()
@@ -40,14 +43,14 @@ class GameScene: ParentScene {
     // MARK: - didMove to:
     override func didMove(to view: SKView) {
         gameSettings.loadGameSettings()
-        if gameSettings.isMusic && backgroundMusic == nil {
-            
-            if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
-                backgroundMusic = SKAudioNode(url: musicURL)
-                addChild(backgroundMusic)
-            }
-
-        }
+//        if gameSettings.isMusic && backgroundMusic == nil {
+//            
+//            if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+//                backgroundMusic = SKAudioNode(url: musicURL)
+//                addChild(backgroundMusic)
+//            }
+//
+//        }
         self.scene?.isPaused = false
         // checing if scene persists
         guard sceneManager.gameScene == nil else {return}
@@ -164,7 +167,7 @@ class GameScene: ParentScene {
     // MARK: - didSimulatePhysics
     override func didSimulatePhysics() {
         
-        player.checkPOsition()
+//        player.checkPOsition()
         
         enumerateChildNodes(withName: "sprite") { node, stop in
             if node.position.y <= -100 {
@@ -199,6 +202,7 @@ class GameScene: ParentScene {
     }
     
     fileprivate func playerFire() {
+
         let shot = YellowShot()
         shot.position = self.player.position
         shot.startMovement()
@@ -224,6 +228,19 @@ class GameScene: ParentScene {
         } else {
             playerFire()
             
+        }
+    }
+    
+    
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        let touch = touches.first
+        if let location = touch?.location(in: self) {
+            player.run(SKAction.move(to: CGPoint(x: playerPosition.x + location.x - startTouch.x, y: playerPosition.y + location.y),
+                                     duration: 0.07))
+            
+//            playerFire()
         }
     }
 }
@@ -280,10 +297,12 @@ extension GameScene :SKPhysicsContactDelegate {
                     contact.bodyA.node?.removeFromParent()
                     lives = 3
                     player.bluePowerUp()
+                    hud.score += 10
                 } else if contact.bodyB.node?.name == PowerUpNames.bluePowerUp {
                     contact.bodyB.node?.removeFromParent()
                     lives = 3
                     player.bluePowerUp()
+                    hud.score += 10
                 }
                 
                 if contact.bodyA.node?.name == PowerUpNames.greenPowerUp {

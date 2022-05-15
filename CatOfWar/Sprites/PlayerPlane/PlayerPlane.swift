@@ -39,15 +39,15 @@ class PlayerPlane: SKSpriteNode {
         return playerPlane
     }
     
-    func checkPOsition() {
-        self.position.x += xAcceleration * 50
-        if self.position.x < -70 {
-            self.position.x = screenSize.width + 70
-        } else if self.position.x > screenSize.width + 70 {
-            self.position.x = -70
-        }
-    }
-    
+//    func checkPOsition() {
+//        self.position.x += xAcceleration * 50
+//        if self.position.x < -70 {
+//            self.position.x = screenSize.width + 70
+//        } else if self.position.x > screenSize.width + 70 {
+//            self.position.x = -70
+//        }
+//    }
+
     func performFly () {
         preloadTexturesArrays()
         motionManager.accelerometerUpdateInterval = 0.2
